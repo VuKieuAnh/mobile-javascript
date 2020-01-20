@@ -21,24 +21,34 @@ function Mobile(battery) {
 
     this.textMessage = function (text) {
         this.draft = text;
+        this.battery --;
     }
 
     this.setInbox = function (mobile) {
-        this.inbox.push(mobile.draft) ;
+        this.inbox.push(mobile.draft);
         mobile.sent.push(mobile.draft);
         mobile.draft = "";
+        this.battery --;
     }
     this.setSent = function (mobile) {
         this.sent.push(this.draft);
         mobile.inbox.push(this.draft);
         this.draft = "";
+        this.battery --;
     }
+
 
     this.getInbox = function () {
-        return this.inbox
+        this.battery --;
+        return this.inbox;
     }
 
-
-
+    this.getSent = function () {
+        this.battery --;
+        return this.sent;
+    }
 
 }
+
+let mobileOfPhong = new Mobile(5);
+let mobileOfDoan = new Mobile(4);
